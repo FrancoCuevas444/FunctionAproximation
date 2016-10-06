@@ -12,20 +12,31 @@ def polynomialMatrix(x_vector, grade) :
 
 	return a_matrix
 
-def polynomialAproximation(x_vector, y_vector, grade) :
-	a_matrix= polynomialMatrix(x_vector, grade)
+def leastSquare(a_matrix, y_vector) :
 	at_matrix = a_matrix.T
 
 	at_a_inverse = np.linalg.inv((at_matrix.dot(a_matrix)))
-
-	result = (at_a_inverse).dot(at_matrix).dot(y_vector)
+	result = ((at_a_inverse).dot(at_matrix)).dot(y_vector)
 
 	return result
 
-def main():
-	warnings.simplefilter("ignore")
+def polynomialFuncEval(x_range, coef):
+	grade = len(coef)
+	y_results = np.empty(shape = (0,0))
 
-if __name__ == "__main__" :
-	main()
+	for x in x_range :
+		x_values = np.power(np.full((grade), x), np.flipud(np.arange(grade)))
+		result = x_values.dot(coef)
+		y_results = np.append(y_results, result)
+
+	return y_results
+
+def polynomialAproximation(x_range, x_vector, y_vector, grade) :
+	a_matrix = polynomialMatrix(x_vector, grade)
+	coef = leastSquare(a_matrix, y_vector)
+	y_graph = polynomialFuncEval(x_range, coef)
+	return y_graph
+
+
 		
 
