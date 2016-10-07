@@ -1,7 +1,10 @@
 import AproximationModule as aprox
+import ParseData as data
 import numpy as np
 import matplotlib.pyplot as plt
 import warnings
+
+filedir='./data.csv'
 
 def plotOriginalData(x_vector, y_vector):
 	myDotGraph = plt.subplot(111)
@@ -18,11 +21,11 @@ def plotPolynomialFunction(x_vector, y_vector, grade):
 
 def main():
 	warnings.simplefilter("ignore")
-	x_vector = np.array([-1, 1, 2, 3, 4, 5, 6])
-	y_vector = np.array([4, 24 ,-1, 115, 40, 2, 9])
-	
+	x_vector = data.getData(filedir)[0]
+	y_vector = data.getData(filedir)[1]
+
 	plotOriginalData(x_vector, y_vector)
-	plotPolynomialFunction(x_vector, y_vector, 3)
+	plotPolynomialFunction(x_vector, y_vector, 10)
 	plt.show()
 
 main()
