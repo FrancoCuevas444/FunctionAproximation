@@ -1,8 +1,9 @@
-import AproximationModule as aprox
-import ParseData as data
 import numpy as np
 import matplotlib.pyplot as plt
 import warnings
+
+import AproximationModule as aprox
+import ParseData as data
 
 filedir='./data.csv'
 
